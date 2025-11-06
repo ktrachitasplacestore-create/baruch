@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Baruch - Lujo Minimalista para tu Cocina</title>
+    
+    <!-- Carga de Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Carga de la fuente "Inter" -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Script para íconos (usado para el menú móvil y WhatsApp) -->
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+    <style>
+        /* Aplicamos la fuente base a todo el cuerpo */
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        /* Clases de utilidad para la tarjeta flip (para navegadores que no son Chrome) */
+        .perspective {
+            perspective: 1000px;
+        }
+        .transform-style-preserve-3d {
+            transform-style: preserve-3d;
+        }
+        .backface-hidden {
+            backface-visibility: hidden;
+        }
+        .rotate-y-180 {
+            transform: rotateY(180deg);
+        }
+    </style>
+</head>
+<body class="bg-white text-gray-800">
+
+    <!-- ===== Header ===== -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            
+            <!-- Logo / Nombre de la Tienda -->
+            <a href="#" class="text-2xl font-bold text-gray-900">Baruch</a>
+            
+            <!-- Menú de Navegación (Desktop) -->
+            <div class="hidden md:flex space-x-8">
+                <a href="#about" class="text-gray-600 hover:text-gray-900 transition duration-300">Quiénes Somos</a>
+                <a href="#products" class="text-gray-600 hover:text-gray-900 transition duration-300">Productos</a>
+                <a href="#contact" class="text-gray-600 hover:text-gray-900 transition duration-300">Contáctanos</a>
+            </div>
+            
+            <!-- Botón del Menú (Móvil) -->
+            <button id="menu-btn" class="md:hidden focus:outline-none">
+                <ion-icon name="menu-outline" class="text-3xl"></ion-icon>
+            </button>
+        </nav>
+        
+        <!-- Menú Móvil (Oculto por defecto) -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg">
+            <a href="#about" class="block py-3 px-6 text-gray-700 hover:bg-gray-50">Quiénes Somos</a>
+            <a href="#products" class="block py-3 px-6 text-gray-700 hover:bg-gray-50">Productos</a>
+            <a href="#contact" class="block py-3 px-6 text-gray-700 hover:bg-gray-50">Contáctanos</a>
+        </div>
+    </header>
+
+    <!-- ===== Hero Section (Actualizada) ===== -->
+    <section class="h-screen min-h-[700px] flex items-center justify-center relative text-white text-center px-6">
+        <!-- Imagen de fondo de lujo (Actualizada) -->
+        <div class="absolute inset-0">
+            <img src="https://images.unsplash.com/photo-1617806118233-15e18933dbf6?auto=format&fit=crop&w=1950&q=80" 
+                 alt="[Imagen de cocina de lujo, oscura y minimalista con detalles en madera]" 
+                 class="w-full h-full object-cover">
+            <!-- Overlay oscuro para legibilidad -->
+            <div class="absolute inset-0 bg-black opacity-60 z-10"></div>
+        </div>
+        
+        <!-- Contenido del Hero -->
+        <div class="z-20 relative">
+            <h1 class="text-4xl md:text-6xl font-bold mb-4 leading-tight">Eleva tu Cocina.</h1>
+            <p class="text-xl md:text-2xl font-light text-gray-200 mb-8">Diseño minimalista, funcionalidad de lujo.</p>
+            <a href="#products" 
+               class="bg-white text-gray-900 font-semibold py-3 px-8 rounded-lg shadow-lg hover:bg-gray-200 transition duration-300 transform hover:scale-105">
+               Descubre la Colección
+            </a>
+        </div>
+    </section>
+
+    <!-- ===== Sección "Quiénes Somos" ===== -->
+    <section id="about" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-6 max-w-4xl text-center">
+            <h2 class="text-3xl font-bold mb-6 text-gray-900">Quiénes Somos</h2>
+            <p class="text-lg text-gray-700 mb-4 leading-relaxed">
+                En Baruch, creemos que los objetos cotidianos deben ser fuentes de inspiración. Nacimos en Instagram con la misión de curar y crear productos de cocina que fusionan la estética de lujo con la practicidad moderna.
+            </p>
+            <p class="text-lg text-gray-700 leading-relaxed">
+                Cada pieza es seleccionada por su calidad y su capacidad de transformar el acto de cocinar en una experiencia elevada.
+            </p>
+        </div>
+    </section>
+
+    <!-- ===== Sección "Productos" (Actualizada con Flip Cards) ===== -->
+    <section id="products" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-12 text-gray-900">Productos Destacados</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                
+                <!-- Producto 1: Especiero Giratorio -->
+                <div class="group h-[400px] w-full [perspective:1000px]">
+                    <div class="relative h-full w-full rounded-lg shadow-xl transition-all duration-700 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
+                        <!-- Cara Frontal -->
+                        <div class="absolute inset-0 [backface-visibility:hidden]">
+                            <img src="https://res.cloudinary.com/dufxtzcpl/image/upload/v1762444962/Gemini_Generated_Image_2w0vqi2w0vqi2w0v_r0ki9g.webp" 
+                                 alt="Especiero giratorio" 
+                                 class="w-full h-full object-cover rounded-lg">
+                            <h3 class="absolute bottom-0 left-0 right-0 p-4 bg-black bg-opacity-50 text-white text-xl font-semibold rounded-b-lg">Especiero Giratorio</h3>
+                        </div>
+                        <!-- Cara Trasera -->
+                        <div class="absolute inset-0 h-full w-full rounded-lg bg-gray-50 p-6 [backface-visibility:hidden] [transform:rotateY(180deg)] flex flex-col justify-center items-center text-center">
+                            <h3 class="text-xl font-semibold mb-2">Especiero Giratorio</h3>
+                            <p class="text-gray-600 mb-4">Organización y estilo en tu cocina. Acceso fácil a todas tus especias.</p>
+                            <a href="https://www.instagram.com/baruch/" target="_blank" class="text-gray-900 font-semibold hover:underline">
+                                Ver en Instagram &rarr;
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Producto 2: Cucharas Medidoras -->
+                <div class="group h-[400px] w-full [perspective:1000px]">
+                    <div class="relative h-full w-full rounded-lg shadow-xl transition-all duration-700 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
+                        <!-- Cara Frontal -->
+                        <div class="absolute inset-0 [backface-visibility:hidden]">
+                            <img src="https://images.unsplash.com/photo-1596704017351-a70813c3c466?auto=format&fit=crop&w=800&q=80" 
+                                 alt="Cucharas medidoras" 
+                                 class="w-full h-full object-cover rounded-lg">
+                            <h3 class="absolute bottom-0 left-0 right-0 p-4 bg-black bg-opacity-50 text-white text-xl font-semibold rounded-b-lg">Cucharas Medidoras</h3>
+                        </div>
+                        <!-- Cara Trasera -->
+                        <div class="absolute inset-0 h-full w-full rounded-lg bg-gray-50 p-6 [backface-visibility:hidden] [transform:rotateY(180deg)] flex flex-col justify-center items-center text-center">
+                            <h3 class="text-xl font-semibold mb-2">Cucharas Medidoras</h3>
+                            <p class="text-gray-600 mb-4">Precisión y elegancia en cada receta. Set de acero en negro y oro.</p>
+                            <a href="https://www.instagram.com/baruch/" target="_blank" class="text-gray-900 font-semibold hover:underline">
+                                Ver en Instagram &rarr;
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Producto 3: Botella de Vinagreta -->
+                <div class="group h-[400px] w-full [perspective:1000px]">
+                    <div class="relative h-full w-full rounded-lg shadow-xl transition-all duration-700 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
+                        <!-- Cara Frontal -->
+                        <div class="absolute inset-0 [backface-visibility:hidden]">
+                            <img src="https://res.cloudinary.com/dufxtzcpl/image/upload/v1762445216/image_8_hmpz7m.webp" 
+                                 alt="Botella de vinagreta" 
+                                 class="w-full h-full object-cover rounded-lg">
+                            <h3 class="absolute bottom-0 left-0 right-0 p-4 bg-black bg-opacity-50 text-white text-xl font-semibold rounded-b-lg">Botella de Vinagreta</h3>
+                        </div>
+                        <!-- Cara Trasera -->
+                        <div class="absolute inset-0 h-full w-full rounded-lg bg-gray-50 p-6 [backface-visibility:hidden] [transform:rotateY(180deg)] flex flex-col justify-center items-center text-center">
+                            <h3 class="text-xl font-semibold mb-2">Botella de Vinagreta</h3>
+                            <p class="text-gray-600 mb-4">Dispensador de aceite y vinagre con un diseño limpio y moderno.</p>
+                            <a href="https://www.instagram.com/baruch/" target="_blank" class="text-gray-900 font-semibold hover:underline">
+                                Ver en Instagram &rarr;
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Producto 4: Cortador de Verduras -->
+                <div class="group h-[400px] w-full [perspective:1000px]">
+                    <div class="relative h-full w-full rounded-lg shadow-xl transition-all duration-700 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
+                        <!-- Cara Frontal -->
+                        <div class="absolute inset-0 [backface-visibility:hidden]">
+                            <img src="https://images.unsplash.com/photo-1607968239031-16d3f283d267?auto=format&fit=crop&w=800&q=80" 
+                                 alt="Cortador de verduras" 
+                                 class="w-full h-full object-cover rounded-lg">
+                            <h3 class="absolute bottom-0 left-0 right-0 p-4 bg-black bg-opacity-50 text-white text-xl font-semibold rounded-b-lg">Cortador de Verduras</h3>
+                        </div>
+                        <!-- Cara Trasera -->
+                        <div class="absolute inset-0 h-full w-full rounded-lg bg-gray-50 p-6 [backface-visibility:hidden] [transform:rotateY(180deg)] flex flex-col justify-center items-center text-center">
+                            <h3 class="text-xl font-semibold mb-2">Cortador de Verduras</h3>
+                            <p class="text-gray-600 mb-4">Cortes perfectos y uniformes sin esfuerzo. Mandolina minimalista.</p>
+                            <a href="https://www.instagram.com/baruch/" target="_blank" class="text-gray-900 font-semibold hover:underline">
+                                Ver en Instagram &rarr;
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Producto 5: Spinner para Ensalada -->
+                <div class="group h-[400px] w-full [perspective:1000px]">
+                    <div class="relative h-full w-full rounded-lg shadow-xl transition-all duration-700 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
+                        <!-- Cara Frontal -->
+                        <div class="absolute inset-0 [backface-visibility:hidden]">
+                            <img src="https://images.unsplash.com/photo-1620963030990-41bf33d3c260?auto=format&fit=crop&w=800&q=80" 
+                                 alt="Spinner para ensalada" 
+                                 class="w-full h-full object-cover rounded-lg">
+                            <h3 class="absolute bottom-0 left-0 right-0 p-4 bg-black bg-opacity-50 text-white text-xl font-semibold rounded-b-lg">Spinner para Ensalada</h3>
+                        </div>
+                        <!-- Cara Trasera -->
+                        <div class="absolute inset-0 h-full w-full rounded-lg bg-gray-50 p-6 [backface-visibility:hidden] [transform:rotateY(180deg)] flex flex-col justify-center items-center text-center">
+                            <h3 class="text-xl font-semibold mb-2">Spinner para Ensalada</h3>
+                            <p class="text-gray-600 mb-4">Seca tus hojas a la perfección. Bowl de vidrio y tapa de madera.</p>
+                            <a href="https://www.instagram.com/baruch/" target="_blank" class="text-gray-900 font-semibold hover:underline">
+                                Ver en Instagram &rarr;
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== Sección "Contáctanos" (CTA a Instagram) ===== -->
+    <section id="contact" class="py-20 bg-gray-900 text-white">
+        <div class="container mx-auto px-6 max-w-3xl text-center">
+            <h2 class="text-3xl font-bold mb-6">¿Interesado en una pieza?</h2>
+            <p class="text-lg text-gray-300 mb-8 leading-relaxed">
+                Todos nuestros pedidos y el catálogo completo se manejan a través de Instagram. Síguenos para ver las últimas novedades y envíanos un DM para ordenar.
+            </p>
+            <a href="https://www.instagram.com/baruch/" 
+               target="_blank" 
+               class="bg-white text-gray-900 font-semibold py-3 px-8 rounded-lg shadow-lg hover:bg-gray-200 transition duration-300 transform hover:scale-105">
+                Ir a @baruch
+            </a>
+        </div>
+    </section>
+
+    <!-- ===== Footer ===== -->
+    <footer class="py-10 bg-gray-100 text-center">
+        <p class="text-gray-600">&copy; 2025 Baruch. Todos los derechos reservados.</p>
+        <p class="text-sm text-gray-500 mt-2">Diseño de cocina minimalista.</p>
+    </footer>
+
+    <!-- JavaScript para el menú móvil -->
+    <script>
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+
+        // Alternar la visibilidad del menú
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Ocultar el menú al hacer clic en un enlace (para navegación en la misma página)
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+    </script>
+
+    <!-- ===== Botón Flotante de WhatsApp ===== -->
+    <a href="https://wa.me/50378419459" 
+       target="_blank" 
+       rel="noopener noreferrer"
+       class="fixed bottom-6 right-6 z-50 bg-green-500 text-white w-16 h-16 rounded-full flex items-center justify-center shadow-lg transform hover:scale-110 transition-transform duration-300">
+        <ion-icon name="logo-whatsapp" class="text-4xl"></ion-icon>
+    </a>
+
+</body>
+</html>
